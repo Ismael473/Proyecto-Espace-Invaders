@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class Jugando extends JPanel implements KeyListener, ActionListener, MouseListener {
-
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
