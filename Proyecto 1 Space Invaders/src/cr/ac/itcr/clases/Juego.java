@@ -10,7 +10,7 @@ public class Juego extends Canvas implements Runnable
 {
     private static final long serialVersionUID =1L;
     public static final int WIDTH = 320;
-    public static final int HEIGHT = 420;
+    public static final int HEIGHT = 350;
     public static final int ESCALA = 2;
     public final String TITLE = "DUCK INVADERS";
 
