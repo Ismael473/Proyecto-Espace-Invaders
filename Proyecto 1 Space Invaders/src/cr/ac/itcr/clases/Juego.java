@@ -1,8 +1,10 @@
 package cr.ac.itcr.clases;
 //Menu del juego
 import javax.swing.*;
-import java.awt.Canvas;
-import java.awt.Dimension;
+import java.awt.*;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 
 public class Juego extends Canvas implements Runnable
 {
@@ -14,6 +16,8 @@ public class Juego extends Canvas implements Runnable
 
     public boolean corriendo = false;
     private Thread thread;
+
+    private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
 
     private synchronized void start()
     {
@@ -83,7 +87,20 @@ public class Juego extends Canvas implements Runnable
 
     private void reproductor()
     {
+        BufferStrategy bs = this.getBufferStrategy();
 
+        if(bs==null)
+        {
+            createBufferStrategy(3);
+            return;
+        }
+
+        Graphics graphics = bs.getDrawGraphics();
+
+        graphics.drawImage(image,0,0,getWidth(),getHeight(),this);
+
+        graphics.dispose();
+        bs.show();
     }
 
     public static void main(String args[])
