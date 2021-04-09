@@ -14,7 +14,7 @@ public class Juego extends Canvas implements Runnable
     public static final int ESCALA = 2;
     public final String TITLE = "DUCK INVADERS";
 
-    public boolean corriendo = false; 
+    public boolean corriendo = false;
     private Thread thread;
 
     private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
