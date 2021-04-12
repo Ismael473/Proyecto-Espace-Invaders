@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
+import java.io.IOException;
 
 public class Juego extends Canvas implements Runnable
 {
@@ -18,6 +19,27 @@ public class Juego extends Canvas implements Runnable
     private Thread thread;
 
     private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
+    private BufferedImage cazador = null;
+
+    private BufferedImage jugador;
+
+
+    public void init()
+    {
+        BufferedDescargarImgs downloader = new BufferedDescargarImgs();
+        try
+        {
+            cazador = downloader.descargarImg("/res/cazador.png");
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        SpriteSheet spriteSheet = new SpriteSheet(cazador);
+        jugador = spriteSheet.grabImage(1,1,32,32);
+    }
+
 
     private synchronized void start()
     {
@@ -46,6 +68,7 @@ public class Juego extends Canvas implements Runnable
 
     public void run()
     {
+        init();
         long ultVez = System.nanoTime();
         final double cantidaddeTicks = 60.0;
         double ns = 1000000000 / cantidaddeTicks;
@@ -98,6 +121,8 @@ public class Juego extends Canvas implements Runnable
         Graphics graphics = bs.getDrawGraphics();
 
         graphics.drawImage(image,0,0,getWidth(),getHeight(),this);
+
+        graphics.drawImage(jugador,100,100,this);
 
         graphics.dispose();
         bs.show();
