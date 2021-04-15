@@ -12,6 +12,5 @@ public class BufferedDescargarImgs
     {
         imagen = ImageIO.read(getClass().getResource(path));
         return imagen;
-
     }
 }
