@@ -8,3 +8,4 @@ Ismael Mena Briones
 Andrés Ramírez Segura  
 Irene Garzona Moya  
 Kleader Gutiérrez Pineda 
+https://lucid.app/lucidchart/d5e4ccc1-238d-48e9-93fa-5cfeedfb0a23/edit?shared=true&page=0_0#
