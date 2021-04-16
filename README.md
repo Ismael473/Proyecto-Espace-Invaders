@@ -8,3 +8,4 @@ Ismael Mena Briones
 Irene Garzona Moya  
 Kleader Gutiérrez Pineda 
 
+link del jira https://ismaelmena73.atlassian.net/jira/software/projects/P1DJ/boards/1
