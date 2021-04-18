@@ -24,11 +24,11 @@ public class SimpleLinkedList<T> implements OurLists<T> {
             this.first = new Node<T>(value);
         }
         else{
-            Node<T> temp = this.first;
-            while(temp.next != null){
-                temp = temp.next;
+            Node<T> currentNode = this.first;
+            while(currentNode.getNext() != null){
+                currentNode = currentNode.getNext();
             }
-            temp.next = new Node<T>(value);
+            currentNode.setNext(new Node<T>(value));
         }
         this.size++;
     }
@@ -39,78 +39,96 @@ public class SimpleLinkedList<T> implements OurLists<T> {
         if (index > this.length()) {
             throw new IndexOutOfBoundsException();
         }
-        else if (index == 0){
+        if (index == 0) {
             this.addFirst(value);
         }
-        else {
-            Node<T> temp = this.first;
-            int currentIndex = 0;
-
-            while(currentIndex != index - 1){
-                temp = temp.next;
-                currentIndex++;
-            }
-            temp.next.next = temp.next;
-            temp.next.setNext(new Node<T>(value));
-            this.size++;
+        if ( index < 0){
+            throw new IndexOutOfBoundsException("index must be positive");
         }
-    }
-
-    @Override
-    public void switchPositions(int index1, int index2) {
-
+        Node<T> prev = null;
+        Node<T> currentNode = this.first;
+        while(currentNode != null && index > 0){
+            prev = currentNode;
+            currentNode = currentNode.getNext();
+            index--;
+        }
+        Node<T> nodeAdded = new Node<T>(value);
+        nodeAdded.setNext(currentNode);
+        prev.setNext(nodeAdded);
+        this.size++;
     }
 
     @Override
     public int getIndex(T value) {
 
         int nodeIndex = 0;
-        Node<T> temp = this.first;
+        Node<T> currentNode = this.first;
 
-        if (temp.getValue() == value){
-            return nodeIndex;
+        if (isEmpty()){
+            throw new IllegalArgumentException("List is empty");
         }
-        else{
-            while(temp.getValue() != value){
-                temp = temp.next;
-                nodeIndex ++;
-            }
-            return nodeIndex;
+
+        while(currentNode.getValue() != value){
+            currentNode = currentNode.getNext();
+            nodeIndex ++;
         }
-    }
-
-
-    @Override
-    public T getLastElement() {
-
-        Node<T> temp = this.first;
-
-        while (temp.next != null){
-            temp = temp.next;
-        }
-        return temp.getValue();
+        return nodeIndex;
     }
 
     @Override
-    public void remove(int index) {
+    public void remove(T value) {
+        /*
+        Node<T> currentNode = this.first;
 
-        Node<T> temp = this.first;
-
-        while(temp.next != null && index > 0){
-            temp = temp.next;
-            index--;
+        if (isEmpty()){
+            throw new IndexOutOfBoundsException("List is empty");
         }
-        temp.next = null;
+        if (index > this.size - 1){
+            throw new IndexOutOfBoundsException("Index exceed the list length");
+        }
+
+        for (int i= 0; i != index - 1; i++){
+            currentNode = currentNode.getNext();
+        }
+        currentNode.setNext(currentNode.getNext().getNext());
         this.size--;
+
+         */
     }
 
     @Override
-    public String printList() {
-        return null;
+    public void clear() {
+        this.first = null;
+        this.size = 0;
+    }
+
+    @Override
+    public void printList() {
+
+        Node<T> temp = this.first;
+        System.out.println("Elements: ");
+
+        while(temp != null){
+            System.out.println(temp.getValue());
+            temp = temp.getNext();
+        }
+    }
+
+    @Override
+    public T getValueAtIndex(int index) {
+
+        Node<T> currentNode = this.first;
+        int indexCount = 0;
+
+        while (indexCount != index){
+            currentNode = currentNode.getNext();
+        }
+        return currentNode.getValue();
     }
 
     @Override
     public int length(){
+
         return this.size;
     }
 
@@ -119,4 +137,8 @@ public class SimpleLinkedList<T> implements OurLists<T> {
 
         return this.first == null;
     }
+
+    @Override
+    public void switchPositions(int index1, int index2) {}
+
 }

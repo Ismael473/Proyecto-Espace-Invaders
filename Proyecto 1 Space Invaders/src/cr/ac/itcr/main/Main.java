@@ -1,5 +1,6 @@
 package cr.ac.itcr.main;
 
+import cr.ac.itcr.dataStructuresLinear.DoubleLinkedList;
 import cr.ac.itcr.dataStructuresLinear.SimpleLinkedList;
 
 public class Main {
@@ -13,14 +14,20 @@ public class Main {
         pantalla.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Cuando se cierra la ventana se termina el programa
         */
 
-        SimpleLinkedList lista1 = new SimpleLinkedList();
-        lista1.addLast(1);
-        lista1.addFirst(2);
-        lista1.addLast(3);
-        lista1.addLast(4);
-        lista1.addLast(5);
-        lista1.addAt(6,4);
+        DoubleLinkedList lista1 = new DoubleLinkedList();
 
-        System.out.println(lista1.getIndex(6));
+        lista1.addLast(2);
+
+        lista1.addLast(4);
+        lista1.addFirst(1);
+        lista1.addAt(3,2);
+        lista1.addLast(5);
+        lista1.addLast(6);
+        lista1.addLast(7);
+        lista1.remove(4);
+        lista1.clear();
+        lista1.printList();
+
+
     }
 }
