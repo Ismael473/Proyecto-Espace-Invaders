@@ -36,7 +36,7 @@ public class SimpleLinkedList<T> implements OurLists<T> {
     @Override
     public void addAt(T value, int index) {
 
-        if (index > this.length()) {
+        if (index > this.size) {
             throw new IndexOutOfBoundsException();
         }
         if (index == 0) {
@@ -77,23 +77,17 @@ public class SimpleLinkedList<T> implements OurLists<T> {
 
     @Override
     public void remove(T value) {
-        /*
+
         Node<T> currentNode = this.first;
 
-        if (isEmpty()){
+        if (isEmpty()) {
             throw new IndexOutOfBoundsException("List is empty");
         }
-        if (index > this.size - 1){
-            throw new IndexOutOfBoundsException("Index exceed the list length");
-        }
-
-        for (int i= 0; i != index - 1; i++){
+        while (currentNode.getNext().getValue() != value && currentNode.getNext() != null) {
             currentNode = currentNode.getNext();
         }
         currentNode.setNext(currentNode.getNext().getNext());
         this.size--;
-
-         */
     }
 
     @Override

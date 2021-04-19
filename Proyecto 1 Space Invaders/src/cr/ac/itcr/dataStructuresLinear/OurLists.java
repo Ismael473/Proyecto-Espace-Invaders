@@ -2,8 +2,6 @@ package cr.ac.itcr.dataStructuresLinear;
 
 public interface OurLists<T> {
 
-    Boolean isEmpty();
-    int length();
     void addFirst(T value);
     void addLast(T value);
     void addAt(T value, int index);
@@ -13,5 +11,9 @@ public interface OurLists<T> {
     void remove(T value);
     void clear();
     void printList();
+    Boolean isEmpty();
+    int length();
+
+
 
 }

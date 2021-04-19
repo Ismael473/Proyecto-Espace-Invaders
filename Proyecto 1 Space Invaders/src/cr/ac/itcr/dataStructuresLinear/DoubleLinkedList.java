@@ -113,7 +113,9 @@ public class DoubleLinkedList<T> implements OurLists<T> {
     public void switchPositions(int index1, int index2) {
 
         T valueReference = getValueAtIndex(index1);
-
+        if (isEmpty()) {
+            throw new RuntimeException("List is empty");
+        }
         if (index1 > this.size || index2 > this.size){
             throw new RuntimeException("Some index exceed the length");
         }
