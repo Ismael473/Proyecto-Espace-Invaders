@@ -1,5 +1,10 @@
 package cr.ac.itcr.dataStructuresLinear;
-
+/**
+ *
+ * @param <T> Data type
+ *
+ * @author kleader gutierrez pineda
+ */
 public class DoubleCircularList<T> implements OurLists<T> {
 
     private Node<T> last = null;
