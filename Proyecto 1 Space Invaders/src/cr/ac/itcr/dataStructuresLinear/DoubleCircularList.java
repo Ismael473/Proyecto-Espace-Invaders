@@ -1,46 +1,46 @@
 package cr.ac.itcr.dataStructuresLinear;
 
-public class CircularList<T> implements OurLists<T> {
+public class DoubleCircularList<T> implements OurLists<T> {
 
     private Node<T> last = null;
-    private int size = 0 ;
+    private int size = 0;
 
     @Override
     public void addFirst(T value) {
 
-        Node<T> newNode = new Node<T>(value, null);
-        Node<T> temp = this.last;
+        Node<T> newNode = new Node<T>(value, null, null);
 
         if (isEmpty()) {
             newNode.setNext(newNode);
+            newNode.setPrev(newNode);
             this.last = newNode;
+
             this.size++;
             return;
         }
-        while (temp != this.last.getNext()) {
-            temp = temp.getNext();
+        else {
+            newNode.setNext(this.last.getNext());
+            newNode.setPrev(this.last);
+            this.last.setNext(newNode);
+            this.size++;
         }
-        newNode.setNext(temp);
-        this.last.setNext(newNode);
-        this.size++;
     }
 
     @Override
     public void addLast(T value) {
 
-        Node<T> newNode = new Node<T>(value, null);
-        Node<T> temp = this.last;
+        Node<T> newNode = new Node<T>(value, null, null);
 
         if (isEmpty()) {
             newNode.setNext(newNode);
+            newNode.setPrev(newNode);
             this.last = newNode;
             this.size++;
             return;
         }
-        while (temp != this.last) {
-            temp = temp.getNext();
-        }
         newNode.setNext(this.last.getNext());
+        newNode.setPrev(this.last);
+        this.last.getNext().setPrev(newNode);
         this.last.setNext(newNode);
         this.last = newNode;
         this.size++;
@@ -49,35 +49,43 @@ public class CircularList<T> implements OurLists<T> {
     @Override
     public void addAt(T value, int index) {
 
-        Node<T> newNode = new Node<T>(value, null);
+        Node<T> newNode = new Node<T>(value, null, null);
         Node<T> currentNode = this.last;
 
-        if (index > size - 1) {
+        if (index > size ) {
             throw new IndexOutOfBoundsException("Index exceed the length");
         }
         if (isEmpty() && index == 0) {
             addFirst(value);
             return;
         }
-        while (index > 0){
-            currentNode = currentNode.getNext();
-            index--;
+        if (index == size) {
+            addLast(value);
+            return;
         }
-        newNode.setNext(currentNode.getNext());
-        currentNode.setNext(newNode);
-        this.size++;
+        else{
+            while (index > 0 ) {
+                currentNode = currentNode.getNext();
+                index--;
+            }
+            newNode.setNext(currentNode);
+            newNode.setPrev(currentNode.getPrev());
+            currentNode.getPrev().setNext(newNode);
+            this.size++;
+            return;
+        }
     }
 
     @Override
     public int getIndex(T value) {
 
-        Node<T> temp = this.last.getNext();
+        Node<T> temp = this.last;
         int nodeIndex = 0;
 
         if (isEmpty()){
             throw new RuntimeException("list is empty");
         }
-        while (temp.getValue()!= value) {
+        while (temp.getNext().getValue() != value && temp.getNext() != this.last) {
             temp = temp.getNext();
             nodeIndex++;
         }
@@ -87,23 +95,31 @@ public class CircularList<T> implements OurLists<T> {
     @Override
     public T getValueAtIndex(int index) {
 
-        Node<T> temp = this.last;
+        Node<T> currentNode = this.last;
         int counter = 0;
 
         if (isEmpty()){
             throw new RuntimeException("list is empty");
         }
-        if (size == 1) {
+        if (size == 1 && index == size - 1) {
             return this.last.getValue();
         }
         if (index == 0) {
             return this.last.getNext().getValue();
         }
-        while (counter != index && temp.getNext() != this.last) {
-            temp = temp.getNext();
+        if (index == this.size - 1) {
+            return this.last.getValue();
+        }
+        while (counter != index && currentNode.getNext() != this.last) {
+            currentNode = currentNode.getNext();
             counter++;
         }
-        return temp.getValue();
+        return currentNode.getValue();
+    }
+
+    @Override
+    public void switchPositions(int index1, int index2) {
+
     }
 
     @Override
@@ -114,21 +130,24 @@ public class CircularList<T> implements OurLists<T> {
         if (isEmpty()) {
             throw new RuntimeException("List is empty");
         }
-        if (this.size == 1) {
-            this.last = null;
+        if (value == this.last.getValue()) {
+            this.last.getPrev().setNext(this.last.getNext());
+            this.last.getNext().setPrev(this.last.getPrev());
+            this.last = this.last.getPrev();
             this.size--;
             return;
         }
         if (value == this.last.getNext().getValue()) {
+            this.last.getNext().getNext().setPrev(this.last);
             this.last.setNext(this.last.getNext().getNext());
             this.size--;
             return;
         }
         while (temp.getNext().getValue() != value && temp.getNext() != this.last) {
-            temp = temp.getNext();
+            temp =temp.getNext();
         }
+        temp.getNext().getNext().setPrev(temp);
         temp.setNext(temp.getNext().getNext());
-        this.last = temp;
         this.size--;
     }
 
@@ -142,34 +161,19 @@ public class CircularList<T> implements OurLists<T> {
     @Override
     public void printList() {
 
-        Node<T> temp = this.last;
-        System.out.println("Elements, increasing order:");
-        while (!isEmpty() && temp.getNext() != this.last){
-            System.out.println(temp.getNext().getValue());
-            temp = temp.getNext();
-        }
-        System.out.println(temp.getNext().getValue());
-        /*
-        Node<T> temp = this.last;
-        int counter = 0;
-        System.out.println("Elements: ");
-
-        if (isEmpty()){
-            System.out.println("Empty");
-        }
-        if (size == 1) {
-            System.out.println(temp.getValue());
-        }
-        else {
-            while (counter < size) {
+        if (!isEmpty()) {
+            Node<T> temp = this.last;
+            System.out.println("Elements, increasing order:");
+            while (temp.getNext() != this.last) {
                 System.out.println(temp.getNext().getValue());
                 temp = temp.getNext();
-                counter++;
-                }
+            }
+            System.out.println(temp.getNext().getValue());
         }
-
-         */
-        System.out.println("---------");
+        else {
+            System.out.println("Empty list");
+            System.out.println("--------");
+        }
     }
 
     @Override
@@ -181,7 +185,4 @@ public class CircularList<T> implements OurLists<T> {
     public int length() {
         return this.size;
     }
-
-    @Override
-    public void switchPositions(int index1, int index2) {}
 }
