@@ -4,12 +4,14 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class BufferedDescargarImgs
-{
+public class BufferedDescargarImgs {
+
     private BufferedImage imagen;
 
-    public BufferedImage descargarImg(String path) throws IOException
-    {
+    public BufferedDescargarImgs() {}
+
+    public BufferedImage descargarImg(String path) throws IOException {
+
         imagen = ImageIO.read(getClass().getResource(path));
         return imagen;
     }

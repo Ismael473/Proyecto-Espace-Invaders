@@ -1,12 +1,14 @@
-package cr.ac.itcr.clases;
+package cr.ac.itcr.windows;
 //Menu del juego
-import javax.imageio.ImageIO;
+import cr.ac.itcr.clases.BufferedDescargarImgs;
+import cr.ac.itcr.clases.Hunter;
+import cr.ac.itcr.clases.SpriteSheet;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
 
 public class GameStarter extends Canvas implements Runnable
 {
@@ -24,23 +26,11 @@ public class GameStarter extends Canvas implements Runnable
 
     private BufferedImage jugador;
 
+    public void init(){
 
-    public void init()
-    {
-        BufferedDescargarImgs downloader = new BufferedDescargarImgs();
-        try
-        {
-            cazador = downloader.descargarImg("/res/cazador.png");
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
+        Hunter h = new Hunter(150,280,40,60,"cazador");
 
-        SpriteSheet spriteSheet = new SpriteSheet(cazador);
-        jugador = spriteSheet.grabImage(1,1,32,32);
     }
-
 
     private synchronized void start()
     {
@@ -146,7 +136,5 @@ public class GameStarter extends Canvas implements Runnable
         frame.setVisible(true);
 
         gameStarter.start();
-
-
     }
 }

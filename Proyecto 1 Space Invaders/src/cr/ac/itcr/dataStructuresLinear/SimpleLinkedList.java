@@ -13,10 +13,9 @@ public class SimpleLinkedList<T> implements OurLists<T> {
     @Override
     public void addFirst(T value) {
 
-        if(isEmpty()){
+        if (isEmpty()) {
             this.first = new Node<T>(value);
-        }
-        else{
+        } else {
             this.first = new Node<T>(value, this.first);
         }
         this.size++;
@@ -25,12 +24,11 @@ public class SimpleLinkedList<T> implements OurLists<T> {
     @Override
     public void addLast(T value) {
 
-        if (isEmpty()){
+        if (isEmpty()) {
             this.first = new Node<T>(value);
-        }
-        else{
+        } else {
             Node<T> temp = this.first;
-            while(temp.getNext() != null){
+            while (temp.getNext() != null) {
                 temp = temp.getNext();
             }
             temp.setNext(new Node<T>(value));
@@ -47,7 +45,7 @@ public class SimpleLinkedList<T> implements OurLists<T> {
         if (index == 0) {
             this.addFirst(value);
         }
-        if ( index < 0){
+        if (index < 0) {
             throw new IndexOutOfBoundsException("index must be positive");
         }
         if (index == 0 && isEmpty()) {
@@ -55,7 +53,7 @@ public class SimpleLinkedList<T> implements OurLists<T> {
         }
         Node<T> prev = null;
         Node<T> temp = this.first;
-        while(temp != null && index > 0){
+        while (temp != null && index > 0) {
             prev = temp;
             temp = temp.getNext();
             index--;
@@ -72,13 +70,13 @@ public class SimpleLinkedList<T> implements OurLists<T> {
         int nodeIndex = 0;
         Node<T> temp = this.first;
 
-        if (isEmpty()){
+        if (isEmpty()) {
             throw new IllegalArgumentException("List is empty");
         }
 
-        while(temp.getValue() != value){
+        while (temp.getValue() != value) {
             temp = temp.getNext();
-            nodeIndex ++;
+            nodeIndex++;
         }
         return nodeIndex;
     }
@@ -113,7 +111,7 @@ public class SimpleLinkedList<T> implements OurLists<T> {
         Node<T> temp = this.first;
         System.out.println("Elements: ");
 
-        while(temp != null){
+        while (temp != null) {
             System.out.println(temp.getValue());
             temp = temp.getNext();
         }
@@ -125,25 +123,27 @@ public class SimpleLinkedList<T> implements OurLists<T> {
         Node<T> temp = this.first;
         int indexCount = 0;
 
-        while (indexCount != index){
+        while (indexCount != index && temp.getNext() != null) {
             temp = temp.getNext();
         }
         return temp.getValue();
     }
 
     @Override
-    public int length(){
+    public int length() {
 
         return this.size;
     }
 
     @Override
-    public Boolean isEmpty(){
+    public Boolean isEmpty() {
 
         return this.first == null;
     }
 
     @Override
-    public void switchPositions(int index1, int index2) {}
-
+    public void switchPositions(int index1, int index2) {
+    }
 }
+
+
