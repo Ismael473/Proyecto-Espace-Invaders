@@ -38,7 +38,7 @@ public class Juego extends Canvas implements Runnable
 
         addKeyListener(new KeyInput(this));
 
-        p = new Player(200,200,this);
+        p = new Player(300,650,this);
     }
 
 
@@ -137,18 +137,7 @@ public class Juego extends Canvas implements Runnable
         {
             p.setX(p.getX() + 5);
         }
-        else if(key == KeyEvent.VK_LEFT)
-        {
-            p.setX(p.getX() - 5);
-        }
-        else if(key == KeyEvent.VK_DOWN)
-        {
-            p.setY(p.getY() + 5);
-        }
-        else if(key == KeyEvent.VK_UP)
-        {
-            p.setY(p.getY() - 5);
-        }
+
     }
 
     public void keyReleased(KeyEvent e)
