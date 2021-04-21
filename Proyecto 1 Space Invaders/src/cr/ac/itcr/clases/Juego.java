@@ -29,15 +29,14 @@ public class Juego extends Canvas implements Runnable
         BufferedDescargarImgs downloader = new BufferedDescargarImgs();
         try
         {
-            cazador = downloader.descargarImg("/res/cazador.png");
+            cazador = downloader.descargarImg("cazador.png");
         }
         catch(IOException e)
         {
             e.printStackTrace();
         }
-
-        SpriteSheet spriteSheet = new SpriteSheet(cazador);
-        jugador = spriteSheet.grabImage(1,1,32,32);
+        SpriteSheet ss = new SpriteSheet(cazador);
+        jugador = ss.grabImage(1,1,32,32);
     }
 
 

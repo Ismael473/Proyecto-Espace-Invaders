@@ -6,11 +6,11 @@ import java.io.IOException;
 
 public class BufferedDescargarImgs
 {
-    private BufferedImage imagen;
+    private BufferedImage image;
 
     public BufferedImage descargarImg(String path) throws IOException
     {
-        imagen = ImageIO.read(getClass().getResource(path));
-        return imagen;
+        image = ImageIO.read(getClass().getResource(path));
+        return image;
     }
 }
