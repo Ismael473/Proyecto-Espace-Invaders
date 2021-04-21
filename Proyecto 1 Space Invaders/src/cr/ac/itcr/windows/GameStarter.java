@@ -1,13 +1,14 @@
 package cr.ac.itcr.clases;
 //Menu del juego
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.IOException;
+import java.net.URL;
 
-public class Juego extends Canvas implements Runnable
+public class GameStarter extends Canvas implements Runnable
 {
     private static final long serialVersionUID =1L;
     public static final int WIDTH = 320;
@@ -15,7 +16,7 @@ public class Juego extends Canvas implements Runnable
     public static final int ESCALA = 2;
     public final String TITLE = "DUCK INVADERS";
 
-    public boolean corriendo = false;
+    public boolean running = false;
     private Thread thread;
 
     private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
@@ -43,18 +44,18 @@ public class Juego extends Canvas implements Runnable
 
     private synchronized void start()
     {
-        if(corriendo)
+        if(running)
             return;
-        corriendo = true;
+        running = true;
         thread = new Thread(this);
         thread.start();
     }
 
     private synchronized void stop()
     {
-        if(!corriendo)
+        if(!running)
             return;
-        corriendo = false;
+        running = false;
         try
         {
             thread.join();
@@ -77,7 +78,7 @@ public class Juego extends Canvas implements Runnable
         int cuadros = 0;
         long relojauto = System.currentTimeMillis();
 
-        while(corriendo)
+        while(running)
         {
             //System.out.println("Working");
             long ahora = System.nanoTime();
@@ -108,8 +109,7 @@ public class Juego extends Canvas implements Runnable
 
     }
 
-    private void reproductor()
-    {
+    private void reproductor(){
         BufferStrategy bs = this.getBufferStrategy();
 
         if(bs==null)
@@ -126,24 +126,27 @@ public class Juego extends Canvas implements Runnable
 
         graphics.dispose();
         bs.show();
+
     }
 
     public static void main(String args[])
     {
-        Juego juego = new Juego();
+        GameStarter gameStarter = new GameStarter();
 
-        juego.setPreferredSize(new Dimension(WIDTH*ESCALA,HEIGHT*ESCALA));
-        juego.setMaximumSize(new Dimension(WIDTH*ESCALA,HEIGHT*ESCALA));
-        juego.setMinimumSize(new Dimension(WIDTH*ESCALA,HEIGHT*ESCALA));
+        gameStarter.setPreferredSize(new Dimension(WIDTH*ESCALA,HEIGHT*ESCALA));
+        gameStarter.setMaximumSize(new Dimension(WIDTH*ESCALA,HEIGHT*ESCALA));
+        gameStarter.setMinimumSize(new Dimension(WIDTH*ESCALA,HEIGHT*ESCALA));
 
-        JFrame frame = new JFrame(juego.TITLE);
-        frame.add(juego);
+        JFrame frame = new JFrame(gameStarter.TITLE);
+        frame.add(gameStarter);
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        juego.start();
+        gameStarter.start();
+
+
     }
 }
