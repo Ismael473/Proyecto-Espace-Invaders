@@ -2,6 +2,7 @@ package cr.ac.itcr.clases;
 //Menu del juego
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
@@ -21,8 +22,7 @@ public class Juego extends Canvas implements Runnable
     private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
     private BufferedImage cazador = null;
 
-    private BufferedImage jugador;
-
+    private Player p;
 
     public void init()
     {
@@ -35,8 +35,10 @@ public class Juego extends Canvas implements Runnable
         {
             e.printStackTrace();
         }
-        SpriteSheet ss = new SpriteSheet(cazador);
-        jugador = ss.grabImage(1,1,32,32);
+
+        addKeyListener(new KeyInput(this));
+
+        p = new Player(200,200,this);
     }
 
 
@@ -104,7 +106,7 @@ public class Juego extends Canvas implements Runnable
 
     private void tick()
     {
-
+        p.tick();
     }
 
     private void reproductor()
@@ -121,10 +123,36 @@ public class Juego extends Canvas implements Runnable
 
         graphics.drawImage(image,0,0,getWidth(),getHeight(),this);
 
-        graphics.drawImage(jugador,100,100,this);
+        p.reproductor(graphics);
 
         graphics.dispose();
         bs.show();
+    }
+
+    public void keyPressed(KeyEvent e)
+    {
+        int key = e.getKeyCode();
+
+        if(key == KeyEvent.VK_RIGHT)
+        {
+            p.setX(p.getX() + 5);
+        }
+        else if(key == KeyEvent.VK_LEFT)
+        {
+            p.setX(p.getX() - 5);
+        }
+        else if(key == KeyEvent.VK_DOWN)
+        {
+            p.setY(p.getY() + 5);
+        }
+        else if(key == KeyEvent.VK_UP)
+        {
+            p.setY(p.getY() - 5);
+        }
+    }
+
+    public void keyReleased(KeyEvent e)
+    {
     }
 
     public static void main(String args[])
@@ -144,5 +172,10 @@ public class Juego extends Canvas implements Runnable
         frame.setVisible(true);
 
         juego.start();
+    }
+
+    public BufferedImage getSprite()
+    {
+        return cazador;
     }
 }
