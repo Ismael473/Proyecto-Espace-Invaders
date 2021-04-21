@@ -144,7 +144,5 @@ public class Juego extends Canvas implements Runnable
         frame.setVisible(true);
 
         juego.start();
-
     }
-
 }
