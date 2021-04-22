@@ -1,4 +1,3 @@
-
 package cr.ac.itcr.clases;
 
 import java.awt.*;
