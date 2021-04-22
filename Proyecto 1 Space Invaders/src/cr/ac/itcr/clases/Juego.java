@@ -22,6 +22,7 @@ public class Juego extends Canvas implements Runnable
 
     private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
     private BufferedImage spriteSheet = null;
+    private BufferedImage fondo = null;
 
     private Player p;
     private Control c;
@@ -33,6 +34,7 @@ public class Juego extends Canvas implements Runnable
         try
         {
             spriteSheet = downloader.descargarImg("sprite_Sheet.png");
+            fondo = downloader.descargarImg("fondojuego.png");
         }
         catch(IOException e)
             {
@@ -126,6 +128,8 @@ public class Juego extends Canvas implements Runnable
             Graphics graphics = bs.getDrawGraphics();
 
             graphics.drawImage(image,0,0,getWidth(),getHeight(),this);
+
+            graphics.drawImage(fondo,0,0,null);
 
             p.reproductor(graphics);
             c.reproductor(graphics);
