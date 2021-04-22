@@ -41,8 +41,6 @@ public class Enemy {
           this.bossLife = bossLife;
      }
 
-     public Timer(){
 
-     }
 
 }
