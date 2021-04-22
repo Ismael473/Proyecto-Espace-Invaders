@@ -24,6 +24,15 @@ public class Player
     public void tick()
     {
         x+=velX;
+
+        if(x <= -10)
+        {
+            x = -10;
+        }
+        if(x >= 610)
+        {
+            x = 610;
+        }
     }
     public void reproductor(Graphics g)
     {
