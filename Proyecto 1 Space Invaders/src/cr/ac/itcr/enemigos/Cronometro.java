@@ -18,6 +18,7 @@ public abstract class Cronometro {
         @Override
         public void actionPerformed(ActionEvent e) {
             censec++;
+            ciclo = 0;
             if(censec == 100){
                 censec = 0;
                 sec++;
@@ -29,12 +30,11 @@ public abstract class Cronometro {
             if(min == 60){
                 min = 0;
                 ciclo++;
+
             }
         }
     };
-    new Timer(delay, taskPerformer);
 
-    abstract start();
 
 
 
