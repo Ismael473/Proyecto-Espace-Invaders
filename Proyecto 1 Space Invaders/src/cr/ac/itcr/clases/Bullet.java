@@ -18,7 +18,7 @@ public class Bullet
         this.y = y;
 
         SpriteSheet ss = new SpriteSheet(juego.getSprite());
-        image = ss.grabImage(0,0,8,16);
+        image = ss.grabImage(2,1,32,32);
     }
 
     public void tick()
@@ -29,5 +29,10 @@ public class Bullet
     public void reproductor(Graphics g)
     {
         g.drawImage(image,(int)x,(int)y,null);
+    }
+
+    public double getY()
+    {
+        return y;
     }
 }

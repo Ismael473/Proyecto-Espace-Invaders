@@ -15,8 +15,6 @@ public class Control
     public Control(Juego juego)
     {
         this.juego = juego;
-
-        addBullet(new Bullet(100,300, juego));
     }
 
     public void tick()
@@ -24,6 +22,9 @@ public class Control
         for(int i = 0; i < b.size(); i++)
         {
             BulletTemp = b.get(i);
+
+            if(BulletTemp.getY() < 0)
+                removeBullet(BulletTemp);
 
             BulletTemp.tick();
 

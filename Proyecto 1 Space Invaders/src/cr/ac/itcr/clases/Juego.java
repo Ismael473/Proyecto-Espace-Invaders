@@ -24,6 +24,7 @@ public class Juego extends Canvas implements Runnable
     private BufferedImage spriteSheet = null;
 
     private Player p;
+    private Control c;
 
     public void init()
     {
@@ -41,7 +42,7 @@ public class Juego extends Canvas implements Runnable
             addKeyListener(new KeyInput(this));
 
             p = new Player(300,650,this);
-            //c = new Control(this);
+            c = new Control(this);
         }
 
         private synchronized void start()
@@ -109,7 +110,7 @@ public class Juego extends Canvas implements Runnable
         private void tick()
         {
             p.tick();
-            //c.tick();
+            c.tick();
         }
 
         private void reproductor()
@@ -127,7 +128,7 @@ public class Juego extends Canvas implements Runnable
             graphics.drawImage(image,0,0,getWidth(),getHeight(),this);
 
             p.reproductor(graphics);
-            //c.reproductor(graphics);
+            c.reproductor(graphics);
 
             graphics.dispose();
             bs.show();
@@ -144,6 +145,10 @@ public class Juego extends Canvas implements Runnable
             else if(key == KeyEvent.VK_LEFT)
             {
                 p.setVelX(-5);
+            }
+            else if(key == KeyEvent.VK_SPACE)
+            {
+                c.addBullet(new Bullet(p.getX(),p.getY() + 10, this));
             }
 
         }
