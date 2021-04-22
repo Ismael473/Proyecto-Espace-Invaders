@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
+import java.nio.Buffer;
 
 public class Juego extends Canvas implements Runnable
 {
@@ -22,6 +23,7 @@ public class Juego extends Canvas implements Runnable
     private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
     private BufferedImage cazador = null;
     private BufferedImage bullet = null;
+    private BufferedImage fondo = null;
 
     private Player p;
     private Control c;
@@ -34,6 +36,7 @@ public class Juego extends Canvas implements Runnable
         {
             cazador = downloader.descargarImg("cazador.png");
             bullet = downloader.descargarImg("bullet.png");
+            fondo = downloader.descargarImg("fondojuego.png")
         }
         catch(IOException e)
         {
@@ -194,6 +197,7 @@ public class Juego extends Canvas implements Runnable
         {
             return bullet;
         }
+        return fondo;
 
     }
 }
