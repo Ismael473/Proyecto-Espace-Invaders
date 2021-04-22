@@ -21,12 +21,10 @@ public class Juego extends Canvas implements Runnable
     private Thread thread;
 
     private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
-    private BufferedImage cazador = null;
-    private BufferedImage bullet = null;
-    private BufferedImage fondo = null;
+    private BufferedImage spriteSheet = null;
 
     private Player p;
-    private Control c;
+    //private Control c;
 
     public void init()
     {
@@ -34,10 +32,7 @@ public class Juego extends Canvas implements Runnable
         BufferedDescargarImgs downloader = new BufferedDescargarImgs();
         try
         {
-            cazador = downloader.descargarImg("cazador.png");
-            bullet = downloader.descargarImg("bullet.png");
-            fondo = downloader.descargarImg("fondojuego.png")
-        }
+            SpriteSheet = downloader.descargarImg("sprite_Sheet.png");
         catch(IOException e)
         {
             e.printStackTrace();
@@ -46,7 +41,7 @@ public class Juego extends Canvas implements Runnable
         addKeyListener(new KeyInput(this));
 
         p = new Player(300,650,this);
-        c = new Control(this);
+        //c = new Control(this);
     }
 
 
@@ -115,7 +110,7 @@ public class Juego extends Canvas implements Runnable
     private void tick()
     {
         p.tick();
-        c.tick();
+        //c.tick();
     }
 
     private void reproductor()
@@ -133,7 +128,7 @@ public class Juego extends Canvas implements Runnable
         graphics.drawImage(image,0,0,getWidth(),getHeight(),this);
 
         p.reproductor(graphics);
-        c.reproductor(graphics);
+        //c.reproductor(graphics);
 
         graphics.dispose();
         bs.show();
@@ -187,17 +182,8 @@ public class Juego extends Canvas implements Runnable
         juego.start();
     }
 
-    public BufferedImage getSprite(int n)
+    public BufferedImage getSprite()
     {
-        if(n == 1)
-        {
-            return cazador;
-        }
-        else if(n == 2)
-        {
-            return bullet;
-        }
-        return fondo;
-
+       return cazador;
     }
 }

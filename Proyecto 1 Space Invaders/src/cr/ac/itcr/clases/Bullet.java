@@ -1,7 +1,9 @@
+
 package cr.ac.itcr.clases;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
 
 public class Bullet
 {
@@ -15,7 +17,7 @@ public class Bullet
         this.x = x;
         this.y = y;
 
-        SpriteSheet ss = new SpriteSheet(juego.getSprite(2));
+        SpriteSheet ss = new SpriteSheet(juego.getSprite());
         image = ss.grabImage(0,0,8,16);
     }
 

@@ -1,7 +1,9 @@
+
 package cr.ac.itcr.clases;
 
 import java.awt.*;
 import java.util.LinkedList;
+
 
 public class Control
 {
