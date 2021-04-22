@@ -24,6 +24,8 @@ public class Juego extends Canvas implements Runnable
     private BufferedImage spriteSheet = null;
     private BufferedImage fondo = null;
 
+    private boolean esta_disparando = false;
+
     private Player p;
     private Control c;
 
@@ -150,8 +152,9 @@ public class Juego extends Canvas implements Runnable
             {
                 p.setVelX(-5);
             }
-            else if(key == KeyEvent.VK_SPACE)
+            else if(key == KeyEvent.VK_SPACE && !esta_disparando)
             {
+                esta_disparando = true;
                 c.addBullet(new Bullet(p.getX(),p.getY() + 10, this));
             }
 
@@ -168,6 +171,10 @@ public class Juego extends Canvas implements Runnable
             else if(key == KeyEvent.VK_LEFT)
             {
                 p.setVelX(0);
+            }
+            else if(key == KeyEvent.VK_SPACE)
+            {
+                esta_disparando = false;
             }
         }
 
