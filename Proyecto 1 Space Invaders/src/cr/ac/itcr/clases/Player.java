@@ -17,7 +17,7 @@ public class Player
         this.x = x;
         this.y = y;
 
-        SpriteSheet ss = new SpriteSheet(juego.getSprite());
+        SpriteSheet ss = new SpriteSheet(juego.getSprite(1));
 
         jugador = ss.grabImage(1,1,32,32);
     }

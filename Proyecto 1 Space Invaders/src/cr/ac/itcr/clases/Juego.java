@@ -21,8 +21,10 @@ public class Juego extends Canvas implements Runnable
 
     private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
     private BufferedImage cazador = null;
+    private BufferedImage bullet = null;
 
     private Player p;
+    private Control c;
 
     public void init()
     {
@@ -31,6 +33,7 @@ public class Juego extends Canvas implements Runnable
         try
         {
             cazador = downloader.descargarImg("cazador.png");
+            bullet = downloader.descargarImg("bullet.png");
         }
         catch(IOException e)
         {
@@ -40,6 +43,7 @@ public class Juego extends Canvas implements Runnable
         addKeyListener(new KeyInput(this));
 
         p = new Player(300,650,this);
+        c = new Control(this);
     }
 
 
@@ -108,6 +112,7 @@ public class Juego extends Canvas implements Runnable
     private void tick()
     {
         p.tick();
+        c.tick();
     }
 
     private void reproductor()
@@ -125,6 +130,7 @@ public class Juego extends Canvas implements Runnable
         graphics.drawImage(image,0,0,getWidth(),getHeight(),this);
 
         p.reproductor(graphics);
+        c.reproductor(graphics);
 
         graphics.dispose();
         bs.show();
@@ -178,8 +184,16 @@ public class Juego extends Canvas implements Runnable
         juego.start();
     }
 
-    public BufferedImage getSprite()
+    public BufferedImage getSprite(int n)
     {
-        return cazador;
+        if(n == 1)
+        {
+            return cazador;
+        }
+        else if(n == 2)
+        {
+            return bullet;
+        }
+
     }
 }
