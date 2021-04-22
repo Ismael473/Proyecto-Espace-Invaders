@@ -135,13 +135,27 @@ public class Juego extends Canvas implements Runnable
 
         if(key == KeyEvent.VK_RIGHT)
         {
-            p.setX(p.getX() + 5);
+            p.setVelX(5);
+        }
+        else if(key == KeyEvent.VK_LEFT)
+        {
+            p.setVelX(-5);
         }
 
     }
 
     public void keyReleased(KeyEvent e)
     {
+        int key = e.getKeyCode();
+
+        if(key == KeyEvent.VK_RIGHT)
+        {
+            p.setVelX(0);
+        }
+        else if(key == KeyEvent.VK_LEFT)
+        {
+            p.setVelX(0);
+        }
     }
 
     public static void main(String args[])

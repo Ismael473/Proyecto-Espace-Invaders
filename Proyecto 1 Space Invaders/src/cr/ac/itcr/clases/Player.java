@@ -8,6 +8,8 @@ public class Player
     private double x;
     private double y;
 
+    private double velX = 0;
+
     private BufferedImage jugador;
 
     public Player(double x, double y, Juego juego)
@@ -21,7 +23,7 @@ public class Player
     }
     public void tick()
     {
-
+        x+=velX;
     }
     public void reproductor(Graphics g)
     {
@@ -36,6 +38,11 @@ public class Player
     public void setX(double x)
     {
         this.x = x;
+    }
+
+    public void setVelX(double velX)
+    {
+        this.velX = velX;
     }
 
 }
