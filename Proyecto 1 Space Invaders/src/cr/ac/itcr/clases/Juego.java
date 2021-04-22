@@ -26,6 +26,7 @@ public class Juego extends Canvas implements Runnable
 
     public void init()
     {
+        requestFocus();
         BufferedDescargarImgs downloader = new BufferedDescargarImgs();
         try
         {
