@@ -4,13 +4,17 @@ import java.awt.*;
 
 public class Enemigos
 {
+    /**
+     * Objetivo: Crear los enemigos con sus respectivas imagenes y hitboxes
+     *
+     */
     private double x;
     private double y;
 
     Bullet bullet;
 
     private Texturas texturas;
-
+    
     public Enemigos(double x, double y, Texturas texturas)
     {
         this.x = x;
