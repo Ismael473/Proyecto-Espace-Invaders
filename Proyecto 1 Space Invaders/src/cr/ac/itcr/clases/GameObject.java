@@ -1,7 +1,18 @@
 package cr.ac.itcr.clases;
 
-public abstract class GameObject {
+import java.awt.*;
 
-    private int x, y;
+public abstract class GameObject
+{
+
+    private double x, y;
+
+    public GameObject(double x, double y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    //public Rectangle get
 
 }

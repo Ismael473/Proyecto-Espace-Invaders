@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 
 public class MouseInput implements MouseListener
 {
+    Juego juego;
     public void mouseClicked(MouseEvent e) {
 
     }
@@ -22,18 +23,32 @@ public class MouseInput implements MouseListener
          */
 
         //Play Button
-        if(mousex >= Juego.WIDTH/2+120 && mousex <= Juego.WIDTH/2+220)
+        if(Juego.State == Juego.STATE.MENU)
         {
-            if(mousey >= 470 && mousey <= 520)
+            if(mousex >= Juego.WIDTH/2+120 && mousex <= Juego.WIDTH/2+220)
             {
-                //Play Presionado
-                Juego.State = Juego.STATE.JUEGO;
-            }
-            else if(mousey >= 535 && mousey <= 585)
-            {
-                Juego.State = Juego.STATE.INFORMACION;
+                if(mousey >= 470 && mousey <= 520)
+                {
+                    //Play Presionado
+                    Juego.State = Juego.STATE.JUEGO;
+                }
+                else if(mousey >= 535 && mousey <= 585)
+                {
+                    Juego.State = Juego.STATE.INFORMACION;
+                }
             }
         }
+        else if(Juego.State == Juego.STATE.INFORMACION)
+        {
+            if (mousex >= 0 && mousex <= (Juego.WIDTH*Juego.ESCALA))
+            {
+                if(mousey >= 0 && mousey <= (Juego.WIDTH*Juego.ESCALA))
+                {
+                    Juego.State = Juego.STATE.MENU;
+                }
+            }
+        }
+
     }
 
     public void mouseReleased(MouseEvent e) {

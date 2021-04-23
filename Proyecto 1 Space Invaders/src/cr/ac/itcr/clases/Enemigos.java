@@ -7,6 +7,8 @@ public class Enemigos
     private double x;
     private double y;
 
+    Bullet bullet;
+
     private Texturas texturas;
 
     public Enemigos(double x, double y, Texturas texturas)
@@ -16,6 +18,7 @@ public class Enemigos
         this.texturas = texturas;
 
     }
+
 
     public void tick()
     {
