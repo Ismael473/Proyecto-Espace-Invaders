@@ -14,6 +14,7 @@ public class Enemigos
         this.x = x;
         this.y = y;
         this.texturas = texturas;
+
     }
 
     public void tick()

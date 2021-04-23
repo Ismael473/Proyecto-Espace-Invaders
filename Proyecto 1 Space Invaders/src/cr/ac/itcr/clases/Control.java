@@ -24,7 +24,11 @@ public class Control
         this.juego = juego;
         this.texturas = texturas;
 
-        addEnemigo(new Enemigos(100,0, texturas));
+        for(int x = 0; x < (Juego.WIDTH * Juego.ESCALA); x+=64)
+        {
+            addEnemigo(new Enemigos(x,0, texturas));
+        }
+
     }
 
     public void tick()

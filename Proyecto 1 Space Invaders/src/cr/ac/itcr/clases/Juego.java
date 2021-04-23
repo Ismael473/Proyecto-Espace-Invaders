@@ -31,7 +31,6 @@ public class Juego extends Canvas implements Runnable
     private Control c;
     private Texturas texturas;
     private Menu menu;
-    private GAMEOVER gg;
     private Informacion info;
 
     public static enum STATE
@@ -172,6 +171,7 @@ public class Juego extends Canvas implements Runnable
         else if(State == STATE.INFORMACION)
         {
             graphics.drawImage(infofondo,0,0,null);
+
         }
 
         graphics.dispose();
