@@ -4,6 +4,9 @@ import java.awt.*;
 
 public class Menu
 {
+    /**
+     * Objetivo: Es la pantalla inicial del juego en la cual se aparecen los botones para información e inicio de juego
+     */
     public Rectangle playB = new Rectangle(Juego.WIDTH/2+120,470,100,50);
     public Rectangle infoB = new Rectangle(Juego.WIDTH/2+120,535,100,50);
 
