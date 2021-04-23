@@ -27,11 +27,6 @@ public class Juego extends Canvas implements Runnable
     private BufferedImage gameoverfondo = null;
     private BufferedImage infofondo = null;
 
-    //private boolean esta_disparando = false;
-
-    private int count_enemigos = 1;
-    private int count_muertos = 0;
-
     private Player p;
     private Control c;
     private Texturas texturas;
@@ -199,7 +194,7 @@ public class Juego extends Canvas implements Runnable
             }
             else if (key == KeyEvent.VK_SPACE)
             {
-                c.addEntidad(new Bullet(p.getX(), p.getY() + 10, texturas));
+                c.addBullet(new Bullet(p.getX(), p.getY() + 10, texturas));
             }
         }
 

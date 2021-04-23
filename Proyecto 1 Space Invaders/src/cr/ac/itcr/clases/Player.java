@@ -3,7 +3,7 @@ package cr.ac.itcr.clases;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Player extends GameObject
+public class Player
 {
     private double x;
     private double y;
@@ -14,7 +14,8 @@ public class Player extends GameObject
 
     public Player(double x, double y, Texturas texturas)
     {
-        super(x,y);
+        this.x = x;
+        this.y = y;
         this.texturas = texturas;
 
     }

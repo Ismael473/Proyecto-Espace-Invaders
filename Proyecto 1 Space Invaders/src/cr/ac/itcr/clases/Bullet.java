@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 
-public class Bullet extends GameObject implements Entidad
+public class Bullet
 {
     private double x;
     private double y;
@@ -28,11 +28,6 @@ public class Bullet extends GameObject implements Entidad
     public void reproductor(Graphics g)
     {
         g.drawImage(texturas.bala, (int)x,(int)y,null);
-    }
-
-    public double getX()
-    {
-        return x;
     }
 
     public double getY()

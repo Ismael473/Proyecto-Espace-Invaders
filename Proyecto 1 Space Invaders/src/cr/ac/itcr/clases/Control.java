@@ -8,44 +8,88 @@ import java.util.LinkedList;
 
 public class Control
 {
-    private LinkedList<Entidad> e = new LinkedList<Entidad>();
+    private LinkedList<Bullet> b = new LinkedList<Bullet>();
+    private LinkedList<Enemigos> e = new LinkedList<Enemigos>();
 
-    Entidad ent;
-    private Texturas texturas;
+    Bullet BulletTemp;
+    Enemigos EneTemp;
+    Graphics g;
+    Juego juego;
+    Texturas texturas;
+
+    private BufferedImage gameover;
 
     public Control(Juego juego, Texturas texturas)
     {
+        this.juego = juego;
         this.texturas = texturas;
-        //for(int i = 0; i < 20; i++)
-            //addEntidad(new Enemigos(100,100,texturas));
+
+        for(int x = 0; x < (Juego.WIDTH * Juego.ESCALA); x+=64)
+        {
+            addEnemigo(new Enemigos(x,0, texturas));
+        }
+
     }
 
     public void tick()
     {
-        for(int i = 0; i < e.size();i++)
+        for(int i = 0; i < b.size(); i++)
         {
-            ent = e.get(i);
+            BulletTemp = b.get(i);
 
-            ent.tick();
+            if(BulletTemp.getY() < 0)
+                removeBullet(BulletTemp);
+
+            BulletTemp.tick();
+
+        }
+        for(int i = 0; i < e.size(); i++)
+        {
+            EneTemp = e.get(i);
+
+            if(EneTemp.getY()>(Juego.HEIGHT*Juego.ESCALA))
+            {
+                Juego.State = Juego.STATE.GAMEOVER;
+            }
+
+            EneTemp.tick();
         }
     }
 
     public void reproductor(Graphics g)
     {
-        for(int i = 0; i < e.size();i++)
+        for(int i = 0; i < b.size(); i++)
         {
-            ent = e.get(i);
+            BulletTemp = b.get(i);
 
-            ent.reproductor(g);
+            BulletTemp.reproductor(g);
+
+        }
+        for(int i = 0; i < e.size(); i++)
+        {
+            EneTemp = e.get(i);
+
+            EneTemp.reproductor(g);
+
         }
     }
 
-    public void addEntidad(Entidad block)
+    public void addBullet(Bullet block)
+    {
+        b.add(block);
+    }
+
+    public void removeBullet(Bullet block)
+    {
+        b.remove(block);
+    }
+
+    public void addEnemigo(Enemigos block)
     {
         e.add(block);
     }
 
-    public void removeEntidad(Entidad block)
+    public void removeEnemigo(Enemigos block)
     {
         e.remove(block);
     }

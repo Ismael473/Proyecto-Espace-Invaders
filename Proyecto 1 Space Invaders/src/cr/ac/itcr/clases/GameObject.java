@@ -13,9 +13,7 @@ public abstract class GameObject
         this.y = y;
     }
 
-    public Rectangle getLimites()
-    {
-        return new Rectangle((int)x, (int)y, 32,32);
-    }
+    //public Rectangle getLimites()
+    //{}
 
 }
