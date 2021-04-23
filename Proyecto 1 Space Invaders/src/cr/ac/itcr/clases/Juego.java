@@ -11,15 +11,23 @@ import java.nio.Buffer;
 
 public class Juego extends Canvas implements Runnable
 {
+    /**
+     * Objetivo: crear un canvas de videojuego co JFrame
+     * Entradas: --
+     * Salidas: canvas
+     */
+    //Settings
     private static final long serialVersionUID =1L;
     public static final int WIDTH = 320;
     public static final int HEIGHT = 350;
     public static final int ESCALA = 2;
     public final String TITLE = "DUCK INVADERS";
 
+    //Threads
     public boolean corriendo = false;
     private Thread thread;
 
+    //Imagenes
     private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
     private BufferedImage spriteSheet = null;
     private BufferedImage fondo = null;
@@ -43,9 +51,14 @@ public class Juego extends Canvas implements Runnable
 
     public static STATE State = STATE.MENU;
 
+    //inicio de juego
     public void init()
     {
-        requestFocus();
+        /**
+         * Objetivo: descargar imagenes, y clases, ademas del mouse listener
+         */
+        requestFocus(); //para no hacer doble click
+        //insertar imagenes
         BufferedDescargarImgs downloader = new BufferedDescargarImgs();
         try
         {
@@ -61,6 +74,7 @@ public class Juego extends Canvas implements Runnable
         }
 
         addKeyListener(new KeyInput(this));
+        //mouse listener para menu
         this.addMouseListener(new MouseInput());
 
 
@@ -73,6 +87,9 @@ public class Juego extends Canvas implements Runnable
 
     private synchronized void start()
     {
+        /**
+         * Objetivo: inicio de thread
+         */
         if(corriendo)
             return;
         corriendo = true;
@@ -98,6 +115,9 @@ public class Juego extends Canvas implements Runnable
 
     public void run()
     {
+        /**
+         * Objetivo: avisa cuantos fps
+         */
         init();
         long ultVez = System.nanoTime();
         final double cantidaddeTicks = 60.0;
@@ -142,6 +162,9 @@ public class Juego extends Canvas implements Runnable
     }
     private void reproductor()
     {
+        /**
+         * Objetivo: reproducir imagenes y objetos
+         */
         BufferStrategy bs = this.getBufferStrategy();
         if(bs==null)
         {
@@ -180,6 +203,11 @@ public class Juego extends Canvas implements Runnable
 
     public void keyPressed(KeyEvent e)
     {
+        /**
+         * Objetivo: mover el jugador cuando el usuario use el teclado
+         * Entradas: key pressed
+         * Salidas: dejar de moverse
+         */
         int key = e.getKeyCode();
 
         if(State == STATE.JUEGO)
@@ -202,6 +230,11 @@ public class Juego extends Canvas implements Runnable
 
     public void keyReleased(KeyEvent e)
     {
+        /**
+         * Objetivo: dejar de mover el jugador cuando el usuario deje de usar el teclado
+         * Entradas: key released
+         * Salidas: dejar de moverse
+         */
         int key = e.getKeyCode();
         if(key == KeyEvent.VK_RIGHT)
         {
@@ -215,6 +248,11 @@ public class Juego extends Canvas implements Runnable
 
     public static void main(String args[])
     {
+        /**
+         * Objetivo: crear el canvas de JFrame
+         * Entradas: --
+         * Salidas: JFrame Canvas
+         */
         Juego juego = new Juego();
 
         juego.setPreferredSize(new Dimension(WIDTH*ESCALA,HEIGHT*ESCALA));
@@ -234,6 +272,9 @@ public class Juego extends Canvas implements Runnable
 
     public BufferedImage getSprite()
     {
+        /**
+         * Objetivo: obtener las imagenes del SpriteSheet, asi llamarlo solo una vez
+         */
         return spriteSheet;
     }
 }
