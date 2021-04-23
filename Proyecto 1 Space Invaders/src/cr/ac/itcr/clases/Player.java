@@ -10,16 +10,14 @@ public class Player
 
     private double velX = 0;
 
-    private BufferedImage jugador;
+    private Texturas texturas;
 
-    public Player(double x, double y, Juego juego)
+    public Player(double x, double y, Texturas texturas)
     {
         this.x = x;
         this.y = y;
+        this.texturas = texturas;
 
-        SpriteSheet ss = new SpriteSheet(juego.getSprite());
-
-        jugador = ss.grabImage(1,1,32,32);
     }
     public void tick()
     {
@@ -36,7 +34,7 @@ public class Player
     }
     public void reproductor(Graphics g)
     {
-        g.drawImage(jugador,(int)x,(int)y,null);
+        g.drawImage(texturas.cazador, (int)x,(int)y,null);
     }
 
     public double getX()
