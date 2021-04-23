@@ -12,11 +12,11 @@ public class Enemy {
      public Integer bossLife;
 
      ArrayList <Integer> tipo = new ArrayList<Integer>();
-     tipo.add(TypeA);
-     tipo.add(TypeB);
-     tipo.add(TypeC);
-     tipo.add(TypeD);
-     tipo.add(TypeE);
+     //tipo.add(TypeA);
+     //tipo.add(TypeB);
+     //tipo.add(TypeC);
+     //tipo.add(TypeD);
+     //tipo.add(TypeE);
 
      public Integer getPosx() {
 

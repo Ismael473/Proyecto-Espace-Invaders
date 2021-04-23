@@ -18,7 +18,7 @@ public class Enemigos
 
     public void tick()
     {
-        y += 1;
+        y += 5;
     }
 
     public void reproductor(Graphics graphics)

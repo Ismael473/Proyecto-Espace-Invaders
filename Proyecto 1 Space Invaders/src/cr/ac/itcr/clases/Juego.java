@@ -168,7 +168,6 @@ public class Juego extends Canvas implements Runnable
         else if(State == STATE.GAMEOVER)
         {
             graphics.drawImage(gameoverfondo,0,0,null);
-            gg.reproductor(graphics);
         }
         else if(State == STATE.INFORMACION)
         {

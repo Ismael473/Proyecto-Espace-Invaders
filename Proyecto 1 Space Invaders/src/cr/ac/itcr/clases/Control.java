@@ -43,10 +43,10 @@ public class Control
         {
             EneTemp = e.get(i);
 
-            //if(EneTemp.getY()>(Juego.HEIGHT*Juego.ESCALA))
-            //{
-            //    Juego.State = Juego.STATE.GAMEOVER;
-            //}
+            if(EneTemp.getY()>(Juego.HEIGHT*Juego.ESCALA))
+            {
+                Juego.State = Juego.STATE.GAMEOVER;
+            }
 
             EneTemp.tick();
         }
