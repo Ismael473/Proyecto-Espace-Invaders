@@ -13,6 +13,7 @@ public abstract class GameObject
         this.y = y;
     }
 
-    //public Rectangle get
+    //public Rectangle getLimites()
+    //{}
 
 }
