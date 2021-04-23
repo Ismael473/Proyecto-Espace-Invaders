@@ -2,19 +2,16 @@ package cr.ac.itcr.clases;
 
 import java.awt.*;
 
-public class Enemigos
+public class Enemigos extends GameObject implements Entidad
 {
-    private double x;
-    private double y;
-
+    Juego juego;
     Bullet bullet;
 
     private Texturas texturas;
 
     public Enemigos(double x, double y, Texturas texturas)
     {
-        this.x = x;
-        this.y = y;
+        super(x,y);
         this.texturas = texturas;
 
     }
@@ -22,7 +19,12 @@ public class Enemigos
 
     public void tick()
     {
-        y += 5;
+        y += 2;
+
+        if(y>((Juego.HEIGHT*Juego.ESCALA)-90))
+        {
+            Juego.State = Juego.STATE.GAMEOVER;
+        }
     }
 
     public void reproductor(Graphics graphics)
