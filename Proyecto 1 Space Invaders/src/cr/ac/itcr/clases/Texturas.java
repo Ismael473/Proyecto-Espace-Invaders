@@ -17,6 +17,9 @@ public class Texturas
 
     private void getTextures()
     {
+        /**
+         * Objetivo: ordenar las imagenes
+         */
         cazador = ss.grabImage(1,1,32,32);
         bala = ss.grabImage(2,1,32,32);
         pato1 = ss.grabImage(3,1,32,32);
